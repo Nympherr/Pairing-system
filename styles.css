@@ -5,7 +5,7 @@ html body{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction:row;
     background-color: #ddd1d1;
 }
 #start-menu{
@@ -36,5 +36,19 @@ html body{
 #player-select{
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid #000;
+}
+#test{
+    display: none;
+}
+#pairing-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+    border-radius: 18px;
     border: 2px solid #000;
 }
