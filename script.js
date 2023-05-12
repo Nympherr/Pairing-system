@@ -10,42 +10,52 @@ let pairingTitle = document.getElementById("pairing-title");
 let playerArray = [];
 let scheduleArray = [];
 let numberOfRounds = 0;
+let players = 0;
 
 
 slider.addEventListener("input", function(){
         pairingTitle.textContent = "Round " + slider.value ;
+        fillPairingBox();
 });
 
 button.addEventListener("click", function(){
 
+    playerArray = [];
+    scheduleArray = [];
+    numberOfRounds = 0;
+
     pairingDiv.style.display = "block";
     pairingDiv.style.display = "flex";
-    body.style.gap = "50px";
 
     slider.min = 1;
     slider.max = playerNumber.value - 1;
     slider.value = 1;
-
-    fillPairingBox(playerNumber.value);
-    createPlayer(playerNumber.value);
-    console.log(playerArray);
     numberOfRounds = playerNumber.value - 1;
 
+    createPlayer(playerNumber.value);
+    players = playerArray.length;
+
+    console.log(playerArray);
     scheduleMaker(numberOfRounds, playerArray);
+    fillPairingBox(playerNumber.value);
 
 });
 
-function fillPairingBox(numberOfPlayers){
+function fillPairingBox(){
+
+    let currentRound = slider.value;
 
     pairingBox.innerHTML = "";
-
     pairingBox.style.display = "flex";
     pairingBox.style.flexDirection = "column";
     pairingBox.style.justifyContent = "space-evenly";
-    for(let i = 1; i <= numberOfPlayers; i++){
+
+    for(let i = 1; i <= players/2; i++){
 
         let div = document.createElement("div");
-        div.textContent = "Player vs Player " + i;
+        console.log(scheduleArray[currentRound - 1][i - 1][0].name);
+        console.log(scheduleArray[currentRound - 1]);
+        div.textContent = scheduleArray[currentRound - 1][i - 1][0].name + " vs " + scheduleArray[currentRound - 1][i - 1][1].name;
         pairingBox.appendChild(div);
     
     }
@@ -77,7 +87,7 @@ function createPlayer(playerNumber){
             let player = new Person("Player " + i,0,0,0,[]);
             playerArray.push(player);
         };
-        playerArray.push("BYE");
+        playerArray.push(new Person("BYE",0,0,0,[]));
     }
 };
 
