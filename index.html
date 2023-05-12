@@ -10,40 +10,58 @@
 
 <body>
 
-    <div id="start">
+<div id="main">
+    <div id="main2">
 
-        <h1 id="start-title">Round robin generator</h1>
-        <div id="start-menu">
+        <div id="start">
 
-            <div id="start-menu-buttons">
-                <select id="player-select"></select>
+            <h1 id="start-title">Round robin generator</h1>
+            <div id="start-menu">
+
+                <div id="start-menu-buttons">
+                    <select id="player-select"></select>
 
                 <script>
-                let selectElement = document.getElementById("player-select");
+                    let selectElement = document.getElementById("player-select");
 
-                for (let i = 2; i <= 20; i++) {
-                    let optionElement = document.createElement("option");
-                    optionElement.value = i;
-                    optionElement.text = i + " players";
-                    selectElement.appendChild(optionElement);
-                }
+                    for (let i = 2; i <= 20; i++) {
+                        let optionElement = document.createElement("option");
+                        optionElement.value = i;
+                        optionElement.text = i + " players";
+                        selectElement.appendChild(optionElement);
+                    }
                 </script>
 
-                <button id="generate-pairings">Generate</button>
+                    <button id="generate-pairings">Generate</button>
+                </div>
+
             </div>
-
         </div>
-    </div>
-    <div id="pairing-div">
-        <h1 id="pairing-title">Round 1</h1>
-        <div id="pairing-box">
 
-        </div>
-        <div id="round">
-            <input type="range" id="roundSlider" name="round" min="0" max="100" value="50">
+        <div id="pairing-div">
+
+            <h1 id="pairing-title">Round 1</h1>
+
+            <div id="pairing-box"> </div>
+
+            <div id="round">
+                <input type="range" id="roundSlider" name="round" min="0" max="100" value="50">
+            </div>        
+
         </div>
     </div>
     
+    <div id="footer">
+
+        <p> Copyright ©
+        <script>document.write(new Date().getFullYear())</script>
+        Nympherr
+        </p>
+        <a href="https://github.com/Nympherr" target="_blank"><img src="./images/github-mark.svg" alt="Github logo" id="logo" <i class="fas fa-spinner"></i></a>
+
+    </div>
+</div>
+
     <script src="./script.js"></script>
 </body>
 </html>

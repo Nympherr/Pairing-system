@@ -7,7 +7,13 @@ html body{
     justify-content: center;
     flex-direction:row;
     background-color: #ddd1d1;
-    gap: 50px;
+    gap:50px;
+}
+#main2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:50px;
 }
 #start-menu{
     display: flex;
@@ -33,6 +39,15 @@ html body{
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #000;
+}
+#generate-pairings:hover,#player-select:hover {
+    scale:1.10;
+    cursor:pointer;
+}
+
+#roundSlider:hover{
+    scale:1.40;
+    cursor:pointer;
 }
 #player-select{
     padding: 10px;
@@ -64,4 +79,32 @@ html body{
 #roundSlider{
     width: 100px;
     height: 20px;
+}
+#footer {
+    display: flex;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    margin-top:auto;
+    position:relative;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    flex-grow: 1;
+}
+#footer:hover .fa-spinner {
+    animation: spin 0.3s linear;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  #logo {
+    height: 30px;
+    width: auto;
 }

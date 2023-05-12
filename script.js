@@ -27,6 +27,7 @@ button.addEventListener("click", function(){
     pairingDiv.style.display = "block";
     pairingDiv.style.display = "flex";
 
+    pairingTitle.textContent = "Round 1";
     slider.min = 1;
     slider.max = playerNumber.value - 1;
     slider.value = 1;
@@ -34,11 +35,10 @@ button.addEventListener("click", function(){
 
     createPlayer(playerNumber.value);
     players = playerArray.length;
-
-    console.log(playerArray);
     scheduleMaker(numberOfRounds, playerArray);
     fillPairingBox(playerNumber.value);
 
+    console.log(playerArray);
 });
 
 function fillPairingBox(){
@@ -53,20 +53,23 @@ function fillPairingBox(){
     for(let i = 1; i <= players/2; i++){
 
         let div = document.createElement("div");
-        console.log(scheduleArray[currentRound - 1][i - 1][0].name);
-        console.log(scheduleArray[currentRound - 1]);
-        div.textContent = scheduleArray[currentRound - 1][i - 1][0].name + " vs " + scheduleArray[currentRound - 1][i - 1][1].name;
+
+        if(scheduleArray[currentRound - 1][i - 1][0].name == "BYE" || scheduleArray[currentRound - 1][i - 1][1].name == "BYE"){
+            div.textContent = scheduleArray[currentRound - 1][i - 1][0].name + " vs " + scheduleArray[currentRound - 1][i - 1][1].name;
+        }
+        else{
+            div.textContent = scheduleArray[currentRound - 1][i - 1][0].name + scheduleArray[currentRound - 1][i - 1][2]
+            + scheduleArray[currentRound - 1][i - 1][1].name;
+        }
+
         pairingBox.appendChild(div);
-    
     }
 };
 
-function Person(name,whitePieces,blackPieces,rounds,opponents){
+function Person(name,gamesAsWhite,gamesAsBlack,currentColor){
     this.name = name;
-    this.whitePieces = whitePieces;
-    this.blackPieces = blackPieces;
-    this.rounds = rounds;
-    this.opponents = opponents;
+    this.gamesAsWhite = gamesAsWhite || 0;
+    this.gamesAsBlack = gamesAsBlack || 0;
 };
 
 function createPlayer(playerNumber){
@@ -100,9 +103,40 @@ function scheduleMaker(numberOfRounds, playerArray){
 
             for (let j = 1; j <= (numberOfRounds + 1)/2; j++){
 
+                let temp1 = playerArray[j - 1];
+                let temp2 = playerArray[numberOfRounds - j + 1];
+                let temp3 = "";
+
                 let pair = [];
-                pair.push(playerArray[j - 1]);
-                pair.push(playerArray[numberOfRounds - j + 1]);
+
+                if(i == 1){
+                    playerArray[j - 1].gamesAsWhite++;
+                    playerArray[numberOfRounds - j + 1].gamesAsBlack++;
+                    temp3 = " (White) vs (Black) ";
+                }
+
+                else if(j == 1){
+
+                    if(i % 2 === 0){
+                        playerArray[j - 1].gamesAsBlack++;
+                        playerArray[numberOfRounds - j + 1].gamesAsWhite++;
+                        temp3 = " (Black) vs (White) ";
+                    }
+                    else{
+                        playerArray[j - 1].gamesAsWhite++;
+                        playerArray[numberOfRounds - j + 1].gamesAsBlack++;
+                        temp3 = " (White) vs (Black) ";
+                    }
+                }
+
+                else{
+                    playerArray[j - 1].gamesAsWhite++;
+                    playerArray[numberOfRounds - j + 1].gamesAsBlack++;
+                    temp3 = " (White) vs (Black) ";
+                }
+                pair.push(temp1);
+                pair.push(temp2);
+                pair.push(temp3);
                 roundPairings.push(pair);
             }
 
@@ -119,19 +153,47 @@ function scheduleMaker(numberOfRounds, playerArray){
 
             for (let j = 1; j <= (numberOfRounds + 2)/2; j++){
 
+                let temp1 = playerArray[j - 1];
+                let temp2 = playerArray[numberOfRounds - j + 2];
+                let temp3 = "";
+
                 let pair = [];
-                pair.push(playerArray[j - 1]);
-                pair.push(playerArray[numberOfRounds - j + 2]);
+
+                if(i == 1){
+                    playerArray[j - 1].gamesAsWhite++;
+                    playerArray[numberOfRounds - j + 2].gamesAsBlack++;
+                    temp3 = " (White) vs (Black) ";
+                }
+
+                else if(j == 1){
+
+                    if(i % 2 === 0){
+                        playerArray[j - 1].gamesAsBlack++;
+                        playerArray[numberOfRounds - j + 2].gamesAsWhite++;
+                        temp3 = " (Black) vs (White) ";
+                    }
+                    else{
+                        playerArray[j - 1].gamesAsWhite++;
+                        playerArray[numberOfRounds - j + 2].gamesAsBlack++;
+                        temp3 = " (White) vs (Black) ";
+                    }
+                }
+
+                else{
+                    playerArray[j - 1].gamesAsWhite++;
+                    playerArray[numberOfRounds - j + 2].gamesAsBlack++;
+                    temp3 = " (White) vs (Black) ";
+                }
+                pair.push(temp1);
+                pair.push(temp2);
+                pair.push(temp3);
                 roundPairings.push(pair);
             }
 
             scheduleArray.push(roundPairings);
             shiftArray(playerArray);
         };
-
     }
-
-    console.log(scheduleArray);
 };
 
 function shiftArray(arr) {
@@ -143,4 +205,4 @@ function shiftArray(arr) {
     }
   
     arr[1] = lastElement;
-  }
+  };
