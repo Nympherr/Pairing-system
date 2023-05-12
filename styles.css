@@ -38,8 +38,11 @@ html body{
     border-radius: 10px;
     border: 2px solid #000;
 }
-#test{
+#pairing-div{
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 #pairing-box{
     display: flex;
@@ -51,4 +54,13 @@ html body{
     background-color: #ffffff;
     border-radius: 18px;
     border: 2px solid #000;
+}
+#round{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#roundSlider{
+    width: 100px;
+    height: 20px;
 }
