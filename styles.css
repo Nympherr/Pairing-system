@@ -1,0 +1,40 @@
+html body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ddd1d1;
+}
+#start-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: #ad2150;
+    border-radius: 18px;
+    border: 2px solid #000;
+}
+
+#start-menu-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+#start-title{
+    font-weight: 900;
+    font-size: 40px;
+}
+#generate-pairings{
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+#player-select{
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
